@@ -9,4 +9,5 @@ This is my project for school.
 • problems
 
 -- Proposed layout --
-![Alt text](../layout.svg "sample layout")
+![localimage](https://github.com/it-sd-sqc/sqc-project-mharelstad2/assets/143424191/78457983-aa2a-42ff-a906-c4de7e7f3f0e)
+
