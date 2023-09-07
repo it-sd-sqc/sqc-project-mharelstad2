@@ -1,13 +1,13 @@
-# My Project
-This is my project for school.
+<h1># Lukes Wife</h1>
+Project for the book Luke's wife its awesome. Very great read keeps you on the edge of your seat. A lot of high level reading and problem solving. 
 
--- Data source --
+<h2>-- Data source --</h2>
 [Luke's wife by Evelyn R. Garratt](https://www.gutenberg.org/ebooks/71564)
 
--- Items of interest --
-• chapters
-• problems
+<h2>-- Items of interest --</h2>
+- Puzzles
+- Defintions
 
--- Proposed layout --
-![localimage](https://github.com/it-sd-sqc/sqc-project-mharelstad2/assets/143424191/78457983-aa2a-42ff-a906-c4de7e7f3f0e)
+<h2>-- Proposed layout --</h2>
+
 
