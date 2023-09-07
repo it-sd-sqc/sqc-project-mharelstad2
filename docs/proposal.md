@@ -15,4 +15,5 @@ Items of interest
 
 Proposed layout
 -----------------------------
+![website](https://github.com/it-sd-sqc/sqc-project-mharelstad2/assets/143424191/4d135ed9-effe-4a9a-929a-89d057afc654)
 
