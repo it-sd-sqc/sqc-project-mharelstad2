@@ -5,8 +5,10 @@ Project for the book Luke's wife its awesome. Very great read keeps you on the e
 [Luke's wife by Evelyn R. Garratt](https://www.gutenberg.org/ebooks/71564)
 
 <h2>-- Items of interest --</h2>
-- Puzzles
-- Defintions
+<ul>
+  <li>Puzzles</li>
+  <li>Defintions</li>
+</ul>
 
 <h2>-- Proposed layout --</h2>
 
