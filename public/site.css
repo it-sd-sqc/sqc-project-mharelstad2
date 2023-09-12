@@ -1,37 +1,41 @@
-/* Global styles for both light and dark modes */
+:root {
+  --background-color-light: #ffffff;
+  --text-color-light: #000000;
+  --background-color-dark: #333333;
+  --text-color-dark: #ffffff;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Header styles */
 header {
-  background-color: #3498db;
-  color: #ffffff;
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
   padding: 10px;
 }
 
-/* Main content styles */
 main {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
 }
 
-/* Link styles */
 a {
-  color: #3498db;
+  color: var(--text-color-light);
   text-decoration: none;
 }
 
-/* Button styles */
 .button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #3498db;
-  color: #ffffff;
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -40,17 +44,15 @@ a {
 
 /* Dark mode styles */
 .dark {
-  background-color: #333333;
-  color: #ffffff;
+  --background-color-light: #333333;
+  --text-color-light: #ffffff;
 }
 
-/* Dark mode button styles */
-.dark-button {
-  background-color: #ffffff;
-  color: #333333;
-}
-
-/* Dark mode link styles */
 .dark a {
-  color: #ffffff;
+  color: var(--text-color-light);
+}
+
+.dark-button {
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
 }
