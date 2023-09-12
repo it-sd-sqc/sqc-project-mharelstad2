@@ -1,34 +1,56 @@
-html {
-  font-size: 16px;
-}
-
+/* Global styles for both light and dark modes */
 body {
-  background-color: palegoldenrod;
-}
-
-h1, h2 {
+  font-family: Arial, sans-serif;
   margin: 0;
+  padding: 0;
+  transition: background-color 0.3s, color 0.3s;
 }
 
+/* Header styles */
 header {
-  margin-bottom: 1rem;
+  background-color: #3498db;
+  color: #ffffff;
+  padding: 10px;
 }
 
+/* Main content styles */
 main {
-  background-color: lightyellow;
-  padding: 1rem;
+  max-width: 800px;
   margin: 0 auto;
-  max-width: 30rem;
+  padding: 20px;
 }
 
-section {
-  margin: 1rem 0 0;
-  line-height: 1.5rem;
-  white-space: pre-line;
+/* Link styles */
+a {
+  color: #3498db;
+  text-decoration: none;
 }
 
-.dark-mode {
-  background-color: black;
-  color: lightblue;
-  
+/* Button styles */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode styles */
+.dark {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+/* Dark mode button styles */
+.dark-button {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+/* Dark mode link styles */
+.dark a {
+  color: #ffffff;
 }
