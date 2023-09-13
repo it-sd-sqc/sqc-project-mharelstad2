@@ -7,8 +7,7 @@ function toggleDarkMode() {
   localStorage.setItem('darkMode', isDarkMode);
 }
 
-/
-/ Check if the user has a dark mode preference in local storage
+// Check if the user has a dark mode preference in local storage
 const storedDarkMode = localStorage.getItem('darkMode');
 
 // Set the initial mode based on the user's preference or system preference
