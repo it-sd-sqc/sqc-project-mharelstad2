@@ -1,0 +1,18 @@
+body {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+a {
+  color: #007bff;
+}
+
+/* Styles for dark mode using the .dark class */
+.dark {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.dark a {
+  color: #33ccff;
+}
