@@ -9,7 +9,6 @@ Data source
 
 Items of interest
 --------------------------
-- Puzzles
 - Defintions
 
 
