@@ -58,3 +58,15 @@ VALUES (value1, value2),
 INSERT INTO your_table_name2 (column1_name, column2_name)
 VALUES (value5, value6),
        (value7, value8);`
+
+// Define the output file path
+const sqlFilePath = './docs/generated-schema.sql';
+
+// Write the SQL script content to the output file
+fs.writeFile(sqlputFilePath, sqlScript, (err) => {
+    if (err) {
+        console.error(`Error writing SQL script to file: ${err}`);
+    } else {
+        console.log(`SQL script has been written to ${sqlputFilePath}`);
+    }
+});
