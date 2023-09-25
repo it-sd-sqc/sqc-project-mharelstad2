@@ -4,6 +4,11 @@ import express from 'express'
 // Configuration ///////////////////////////////////////////
 const PORT = process.env.PORT || 5163
 
+// Routes //////////////////////////////////////////////////
+app.get('/chapters', function (req, res) {
+  res.send('Display all items here')
+})
+
 // Web server setup ////////////////////////////////////////
 const app = express()
 app.use(express.static('./public'))
