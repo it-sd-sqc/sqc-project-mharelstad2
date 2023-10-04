@@ -1,3 +1,5 @@
+### Joe can handle rejection.
+
 # My first working and correct Web Server Project
 Marcus Harelstad
 
