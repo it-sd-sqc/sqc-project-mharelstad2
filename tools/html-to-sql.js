@@ -13,10 +13,8 @@ fs.writeFileSync(outputFilePath, sqlStatements);
 
 console.log(`HTML data has been converted to SQL and saved to ${outputFilePath}`);
 
-const fs = require('fs');
-
-// Hard-coded input file path
-const lukesFilePath = 'C:\Users\Owner\Documents\CVTC\SQC\sqc-project-mharelstad2\data';
+// Correct the file path format
+const lukesFilePath = 'C:/Users/Owner/Documents/CVTC/SQC/sqc-project-mharelstad2/data';
 
 // Read the input file
 try {
@@ -33,8 +31,8 @@ try {
     }
 }
 
-const sqlHeader =
-`-- Drop tables if they exist
+const sqlHeader = `
+-- Drop tables if they exist
 DROP TABLE IF EXISTS your_table_name1, your_table_name2;
 
 -- Create tables
@@ -57,16 +55,18 @@ VALUES (value1, value2),
 
 INSERT INTO your_table_name2 (column1_name, column2_name)
 VALUES (value5, value6),
-       (value7, value8);`
+       (value7, value8);`;
 
 // Define the output file path
 const sqlFilePath = './docs/generated-schema.sql';
 
+// Ensure the directory exists or create it
+const outputDir = sqlFilePath.substring(0, sqlFilePath.lastIndexOf('/'));
+if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+}
+
 // Write the SQL script content to the output file
-fs.writeFile(sqlputFilePath, sqlScript, (err) => {
-    if (err) {
-        console.error(`Error writing SQL script to file: ${err}`);
-    } else {
-        console.log(`SQL script has been written to ${sqlputFilePath}`);
-    }
-});
+fs.writeFileSync(sqlFilePath, sqlHeader);
+
+console.log(`SQL script has been written to ${sqlFilePath}`);
