@@ -15,9 +15,6 @@ const displayPort = function () {
 
 app.listen(PORT, displayPort)
 
-// Routes
-const express = require('express');
-
 
 // Sample database of chapters
 const chapters = [
