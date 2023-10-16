@@ -1,0 +1,27 @@
+{
+  "name": "sqc-project-mharelstad2",
+  "version": "1.0.0",
+  "description": "Your given and family name.",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "generate": "node tools/html-to-sql.js && psql -U postgres -f ./docs/generated-schema.sql",
+    "test": "standard \"**/*.js\" && stylelint \"**/*.css\" && html-validate \"public/**/*.html\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "html-validate": "^8.4.0",
+    "standard": "^17.1.0",
+    "stylelint": "^15.10.3"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "jsdom": "^22.1.0",
+    "node-html-parser": "^6.1.10"
+  }
+}
