@@ -1,77 +1,89 @@
 // Dependencies
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, openSync, closeSync, writeFileSync } from 'fs';
 import { parse } from 'node-html-parser';
 
-// Define input and output file paths
-const inputFilePath = 'input.html'; // Relative path to your HTML file
-const outputFilePath = 'output.sql'; // Relative path for the SQL output
+// Configuration
+const srcPath = 'data/LukesWife.html'; // Adjust the path to your HTML file
+const dstPath = 'docs/generated-schema.sql';
 
-// Read the HTML file
-const htmlData = readFileSync(inputFilePath, 'utf8');
+// Functions
+const extractBooksAndChapters = (root) => {
+  const books = [];
+  const chapters = [];
 
-// Convert the HTML data to SQL statements
-const sqlStatements = `INSERT INTO your_table_name (html_data_column) VALUES ('${htmlData.replace(/'/g, "''")}');`;
+  // Extract books and chapters
+  const bookElements = root.querySelectorAll('.book');
+  bookElements.forEach((bookElement) => {
+    const bookTitle = bookElement.querySelector('.book-title').text;
+    const chaptersElement = bookElement.querySelector('.chapters');
+    const chapterElements = chaptersElement.querySelectorAll('.chapter');
 
-// Write the SQL statements to an output file
-writeFileSync(outputFilePath, sqlStatements);
+    books.push({ title: bookTitle });
 
-console.log(`HTML data has been converted to SQL and saved to ${outputFilePath}`);
+    chapterElements.forEach((chapterElement) => {
+      const chapterTitle = chapterElement.querySelector('.chapter-title').text;
+      const chapterContent = chapterElement.querySelector('.chapter-content').text;
 
-// Define the input file path using a relative path
-const relativeFilePath = './data/'; // Adjust this relative path as needed
+      chapters.push({
+        bookTitle,
+        title: chapterTitle,
+        content: chapterContent,
+      });
+    });
+  });
 
-// Read the input file
+  return { books, chapters };
+};
+
+// Create SQL schema
+const createSQLSchema = (fd) => {
+  writeFileSync(fd, 'DROP TABLE IF EXISTS chapters CASCADE;\n');
+  writeFileSync(fd, 'DROP TABLE IF EXISTS books CASCADE;\n\n');
+
+  writeFileSync(fd, '-- Create the "books" table\n');
+  writeFileSync(fd, 'CREATE TABLE books (\n');
+  writeFileSync(fd, '  id SERIAL PRIMARY KEY,\n');
+  writeFileSync(fd, '  title TEXT NOT NULL\n');
+  writeFileSync(fd, ');\n\n');
+
+  writeFileSync(fd, '-- Create the "chapters" table\n');
+  writeFileSync(fd, 'CREATE TABLE chapters (\n');
+  writeFileSync(fd, '  id SERIAL PRIMARY KEY,\n');
+  writeFileSync(fd, '  title TEXT NOT NULL,\n');
+  writeFileSync(fd, '  book_title TEXT NOT NULL,\n');
+  writeFileSync(fd, '  content TEXT NOT NULL\n');
+  writeFileSync(fd, ');\n\n');
+};
+
+// Insert data into the tables
+const insertData = (fd, tableName, columns, values) => {
+  values.forEach((value) => {
+    const valueString = columns.map((column) => `'${value[column]}'`).join(', ');
+    writeFileSync(fd, `INSERT INTO "${tableName}" (${columns.join(', ')}) VALUES (${valueString});\n`);
+  });
+};
+
+// Conversion
 try {
-  const content = readFileSync(relativeFilePath, 'utf8');
+  const src = readFileSync(srcPath, 'utf8');
+  const domRoot = parse(src);
 
-  // Process the content as needed
-  console.log('Content from the input file:');
-  console.log(content);
+  // Extract book and chapter data
+  const { books, chapters } = extractBooksAndChapters(domRoot);
+
+  // Output the data as SQL
+  const fd = openSync(dstPath, 'w');
+
+  // Create SQL schema
+  createSQLSchema(fd);
+
+  // Insert book data
+  insertData(fd, 'Books', ['title'], books);
+
+  // Insert chapter data
+  insertData(fd, 'Chapters', ['title', 'bookTitle', 'content'], chapters);
+
+  closeSync(fd);
 } catch (error) {
-  if (error.code === 'ENOENT') {
-    console.error(`File not found at path: ${relativeFilePath}`);
-  } else {
-    console.error(`An error occurred: ${error.message}`);
-  }
+  console.error('An error occurred:', error);
 }
-
-// Define the output file path
-const sqlHeader = `
--- Drop tables if they exist
-DROP TABLE IF EXISTS your_table_name1, your_table_name2;
-
--- Create tables
-CREATE TABLE your_table_name1 (
-    column1_name datatype1,
-    column2_name datatype2,
-    -- Add more columns as needed
-);
-
-CREATE TABLE your_table_name2 (
-    column1_name datatype1,
-    column2_name datatype2,
-    -- Add more columns as needed
-);
-
--- Insert data into tables
-INSERT INTO your_table_name1 (column1_name, column2_name)
-VALUES (value1, value2),
-       (value3, value4);
-
-INSERT INTO your_table_name2 (column1_name, column2_name)
-VALUES (value5, value6),
-       (value7, value8);`;
-
-// Define the output file path using a relative path
-const sqlFilePath = './docs/generated-schema.sql';
-
-// Ensure the directory exists or create it
-const outputDir = sqlFilePath.substring(0, sqlFilePath.lastIndexOf('/'));
-if (!fs.existsSync(outputDir)) {
-  fs.mkdirSync(outputDir, { recursive: true });
-}
-
-// Write the SQL script content to the output file
-writeFileSync(sqlFilePath, sqlHeader);
-
-console.log(`SQL script has been written to ${sqlFilePath}`);

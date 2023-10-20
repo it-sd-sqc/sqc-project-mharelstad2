@@ -1,7 +1,7 @@
 Lukes Wife
 ========================
 
-Project for the book Luke's wife its awesome. Very great read keeps you on the edge of your seat. A lot of high level reading and problem solving. 
+Project for the book Luke's wife its awesome. Very great read keeps you on the edge of your seat. A lot of high level reading and problem solving. This project gets data from a book including chapters, and titles.
 
 Data source
 --------------------------
@@ -9,8 +9,8 @@ Data source
 
 Items of interest
 --------------------------
-- Defintions
-
+- Chapter
+- Titles
 
 Proposed layout
 -----------------------------

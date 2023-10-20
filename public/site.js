@@ -1,16 +1,17 @@
-function toggleDarkMode () {
-  const body = document.body
-  body.classList.toggle('dark')
+document.addEventListener('DOMContentLoaded', function () {
+  // Your JavaScript code here
+const button = document.getElementById('myButton')
+const body = document.body // Get the body element
 
-  // Save the user's preference in local storage
-  const isDarkMode = body.classList.contains('dark')
-  localStorage.setItem('darkMode', isDarkMode)
-}
-
-// Check if the user has a dark mode preference in local storage
-const storedDarkMode = localStorage.getItem('darkMode')
-
-// Set the initial mode based on the user's preference or system preference
-if (storedDarkMode === 'true' || (!storedDarkMode && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-  toggleDarkMode()
-}
+// Add a click event listener to the button
+button.addEventListener('click', function () {
+  // Toggle between light and dark mode
+  if (body.classList.contains('dark-mode')) {
+    // Switch to light mode
+    body.classList.remove('dark-mode')
+  } else {
+    // Switch to dark mode
+    body.classList.add('dark-mode');
+  }
+})
+});
